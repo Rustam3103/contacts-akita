@@ -1,6 +1,7 @@
-# ContactsAkita
+# Contacts
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+Implemented state management in project using Akita.
 
 ## Development server
 
