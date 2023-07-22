@@ -1,9 +1,16 @@
 <div class="container mt-5">
-  <div class="row">
+  <div class="d-flex justify-content-between">
     <h1>
       List of contacts
     </h1>
+
+    <div>
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="openAddEditContact()">
+        Add
+      </button>
+    </div>
   </div>
+
   <table class="table caption-top mt-3">
     <thead>
       <tr>
@@ -26,7 +33,7 @@
         <td>{{contact.sex}}</td>
         <td style="display: flex; justify-content: center;">
           <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;"
-            (click)="openEditContact(contact)">
+            (click)="openAddEditContact(contact)">
             Update
           </button>
           <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteContact(contact.id)">
@@ -36,4 +43,5 @@
       </tr>
     </tbody>
   </table>
+
 </div>

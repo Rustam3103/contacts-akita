@@ -38,7 +38,7 @@ export class ContactsComponent {
     this.contacts$ = this.todoQuery.getContacts();
   }
 
-  openEditContact(contact: Contact) {
+  openAddEditContact(contact?: Contact) {
     const modalRef = this.modalService.open(AddEditContactsComponent, { size: 'xl' });
     modalRef.componentInstance.contact = contact;
   }
