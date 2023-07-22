@@ -1,7 +1,7 @@
 <form [formGroup]="form">
     <div class="modal-header">
         <h4 class="modal-title">
-            {{contact ? 'Eddit contact' : 'Add contact'}}
+            {{contact ? 'Edit contact' : 'Add contact'}}
         </h4>
         <button type="button" class="btn-close" aria-label="Close"
             (click)="activeModal.dismiss('Cross click')"></button>
@@ -64,8 +64,8 @@
 
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="activeModal.close('Close click')">
-            {{contact ? 'eddit' : 'add'}}
+        <button type="submit" class="btn btn-primary" (click)="save()">
+            {{contact ? 'edit' : 'add'}}
         </button>
     </div>
 </form>
