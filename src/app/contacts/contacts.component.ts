@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditContactsComponent } from './components/add-edit-contacts/add-edit-contacts.component';
 import Swal from 'sweetalert2';
+import { Contact } from './contacts.model';
+import { Observable, of } from 'rxjs';
+import { Contacts } from './contacts.const';
+import { ContactsQuery } from './state/query';
+import { ContactsStore } from './state/store';
 
 @Component({
   selector: 'app-contacts',
@@ -9,17 +14,33 @@ import Swal from 'sweetalert2';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent {
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  public contacts$: Observable<Contact[]> = of([])
+
+  constructor(
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private todoQuery: ContactsQuery,
+    private todoStore: ContactsStore
+  ) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit(): void {
+    this.todoStore.update(state => {
+      return {
+        ...state,
+        contacts: Contacts,
+        isLoaded: true,
+      };
+    })
+  
+    this.contacts$ = this.todoQuery.getContacts();
   }
 
-  openEditContact() {
+  openEditContact(contact: Contact) {
     const modalRef = this.modalService.open(AddEditContactsComponent, { size: 'xl' });
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.contact = contact;
   }
 
   deleteContact() {

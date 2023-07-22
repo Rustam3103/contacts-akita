@@ -1,86 +1,39 @@
 <div class="container mt-5">
-    <div class="row">
-        <h1>
-            List of users
-        </h1>
-    </div>
-    <table class="table caption-top mt-3">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Phone number</th>
-            <th scope="col">Email</th>
-            <th scope="col">Sex</th>
-            <th scope="col" style="display: flex; justify-content: center;">...</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>+992982234322</td>
-            <td>@mdo</td>
-            <td>male</td>
-            <td  style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;" (click)="openEditContact()">
-                    Update
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteContact()">
-                    Delete
-                </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>+9987632345</td>
-            <td>@fat</td>
-            <td>male</td>
-            <td  style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;">
-                    Update
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger">
-                    Delete
-                </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Inna</td>
-            <td>Yacobna</td>
-            <td>+9987632343</td>
-            <td>@inna</td>
-            <td>female</td>
-            <td  style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;">
-                    Update
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger">
-                    Delete
-                </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>+9928743221</td>
-            <td>@twitter</td>
-            <td>male</td>
-            <td  style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;">
-                    Update
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger">
-                    Delete
-                </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="row">
+    <h1>
+      List of contacts
+    </h1>
+  </div>
+  <table class="table caption-top mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Phone number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Sex</th>
+        <th scope="col" style="display: flex; justify-content: center;">...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts$ | async">
+        <th scope="row">{{contact.id}}</th>
+        <td>{{contact.name}}</td>
+        <td>{{contact.surname}}</td>
+        <td>{{contact.phoneNumber}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.sex}}</td>
+        <td style="display: flex; justify-content: center;">
+          <button type="button" class="btn btn-sm btn-outline-primary" style="margin-right: 0.5rem;"
+            (click)="openEditContact(contact)">
+            Update
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteContact()">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
