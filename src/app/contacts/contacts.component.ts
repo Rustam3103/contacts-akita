@@ -6,7 +6,7 @@ import { Contact } from './contacts.model';
 import { Observable, of } from 'rxjs';
 import { Contacts } from './contacts.const';
 import { ContactsQuery } from './state/query';
-import { ContactsStore } from './state/store';
+import { ContactsState, ContactsStore } from './state/store';
 
 @Component({
   selector: 'app-contacts',
@@ -34,7 +34,7 @@ export class ContactsComponent {
         isLoaded: true,
       };
     })
-  
+
     this.contacts$ = this.todoQuery.getContacts();
   }
 
@@ -43,7 +43,7 @@ export class ContactsComponent {
     modalRef.componentInstance.contact = contact;
   }
 
-  deleteContact() {
+  deleteContact(id?: number) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -54,9 +54,17 @@ export class ContactsComponent {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
+
+        this.todoStore.update((state: ContactsState) => {
+          return {
+            ...state,
+            contacts: state.contacts.filter((element) => element.id !== id)
+          }
+        })
+
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your contact has been deleted.',
           'success'
         )
       }

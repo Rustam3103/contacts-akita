@@ -19,6 +19,7 @@ export class AddEditContactsComponent implements OnInit {
     this.form = fb.group({
       id: null,
       name: null,
+      surname: null,
       sex: null,
       email: null,
       phoneNumber: null
